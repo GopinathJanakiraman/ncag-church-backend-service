@@ -1,13 +1,15 @@
 package in.ncag.church.service;
 
 
-import java.util.List;
 
-import in.ncag.church.model.Carecell;
+import in.ncag.church.dto.CarecellPageDTO;
+import in.ncag.church.dto.MemberDTO;
 
 
 public interface CarecellService {
 
-	List<Carecell> findAll();
+	CarecellPageDTO findAll(int page, int size);
+
+	CarecellPageDTO searchCarecell(MemberDTO memberdto);
 
 }

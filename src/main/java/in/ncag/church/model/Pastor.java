@@ -1,7 +1,6 @@
 package in.ncag.church.model;
 
 import java.util.Date;
-import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -11,8 +10,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.ColumnTransformer;
@@ -20,19 +19,13 @@ import org.hibernate.annotations.ColumnTransformer;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import in.ncag.church.util.NCAGConstants;
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 @Entity
 @Table(name = "pastor")
-@Data
-@Getter
-@Setter
 public class Pastor {
 
 	@Id
 	@Column
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
 	
 	@Column(nullable = false)
@@ -43,6 +36,10 @@ public class Pastor {
 	
 	@Column(nullable = false)
 	private String address;
+	
+	@OneToOne(cascade = {})
+	@JoinColumn(name ="area_id_fk")
+	private Area areaDetails;
 	
 	@OneToOne(cascade = {})
 	@JoinColumn(name ="city_id_fk")
@@ -84,8 +81,8 @@ public class Pastor {
 	
 	
 	@JsonIgnore
-	@OneToMany(mappedBy = "pastorDetails", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	private List<Area> areaList;
+	@OneToOne(mappedBy = "pastorDetails", cascade = {CascadeType.DETACH,CascadeType.PERSIST,CascadeType.REFRESH,CascadeType.REMOVE}, fetch = FetchType.LAZY)
+	private Region regionDetail;
 
 	public Integer getId() {
 		return id;
@@ -201,13 +198,24 @@ public class Pastor {
 		this.credential = credential;
 	}
 
-	public List<Area> getAreaList() {
-		return areaList;
+	public Region getRegionDetail() {
+		return regionDetail;
 	}
 
-	public void setAreaList(List<Area> areaList) {
-		this.areaList = areaList;
+	public void setRegionDetail(Region regionDetail) {
+		this.regionDetail = regionDetail;
 	}
+
+	public Area getAreaDetails() {
+		return areaDetails;
+	}
+
+	public void setAreaDetails(Area areaDetails) {
+		this.areaDetails = areaDetails;
+	}
+
+	
+	
 	
 	
 	

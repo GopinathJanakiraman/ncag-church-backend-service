@@ -10,9 +10,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Table(name = "carecell")
@@ -24,12 +26,15 @@ public class Carecell {
 	private Integer id;
 	
 	
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name ="areaId")
 	private Area areaDetails;
 	
+	private String carecellAddress;
+	
 	@OneToMany(mappedBy = "carecellDetails", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	private List<CarecellMember> carecellMemberList;
+	@JsonManagedReference
+	private List<Member> carecellMemberList;
 
 	public Integer getId() {
 		return id;
@@ -47,12 +52,20 @@ public class Carecell {
 		this.areaDetails = areaDetails;
 	}
 
-	public List<CarecellMember> getCarecellMemberList() {
+	public List<Member> getCarecellMemberList() {
 		return carecellMemberList;
 	}
 
-	public void setCarecellMemberList(List<CarecellMember> carecellMemberList) {
+	public void setCarecellMemberList(List<Member> carecellMemberList) {
 		this.carecellMemberList = carecellMemberList;
+	}
+
+	public String getCarecellAddress() {
+		return carecellAddress;
+	}
+
+	public void setCarecellAddress(String carecellAddress) {
+		this.carecellAddress = carecellAddress;
 	}
 	
 	

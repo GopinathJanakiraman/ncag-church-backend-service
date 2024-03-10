@@ -18,6 +18,9 @@ public class MemberType {
 	
 	@Column(nullable = false, unique = true)
 	private String memberType;
+	
+	@Column(nullable = false, unique = true)
+	private String shortForm;
 
 	public Integer getId() {
 		return id;
@@ -33,6 +36,14 @@ public class MemberType {
 
 	public void setMemberType(String memberType) {
 		this.memberType = memberType;
+	}
+
+	public String getShortForm() {
+		return shortForm;
+	}
+
+	public void setShortForm(String shortForm) {
+		this.shortForm = shortForm;
 	}
 	
 }

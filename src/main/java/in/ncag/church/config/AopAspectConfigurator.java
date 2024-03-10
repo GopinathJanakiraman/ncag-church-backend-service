@@ -14,12 +14,12 @@ public class AopAspectConfigurator {
 		
 		private Logger logger = LoggerFactory.getLogger(this.getClass());
 		
-		@Before("execution(* com.olam.fsp.*.*(..))")
+		@Before("execution(* com.ncag.church.*.*(..))")
 		public void before(JoinPoint joinPoint){
 			//Advice
 			logger.info(" {} service Method Starts", joinPoint);
 		}
-		@After("execution(* com.olam.fsp.*.*(..))")
+		@After("execution(* com.ncag.church.*.*(..))")
 		public void after(JoinPoint joinPoint){
 			//Advice
 			logger.info(" {} service Method ends", joinPoint);

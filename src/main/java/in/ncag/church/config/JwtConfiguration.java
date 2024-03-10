@@ -29,7 +29,7 @@ public class JwtConfiguration {
 	@Bean
 	protected JwtAccessTokenConverter jwtTokenEnhancer() throws IOException {
 		JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
-		Resource resource = new ClassPathResource("oauth-public.key");
+		Resource resource = new ClassPathResource("/oauth-public.key");
 		String publicKey = null;
 		try {
 			publicKey = new String(FileCopyUtils.copyToByteArray(resource.getInputStream()));

@@ -4,17 +4,21 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 @Table(name = "member")
@@ -38,33 +42,40 @@ public class Member {
 	@Column(nullable = false)
 	private String address;
 	
-	@OneToOne(cascade = {})
+	@ManyToOne(cascade = {})
+	@JoinColumn(name ="area_id_fk")
+	private Area areaDetails;
+	
+	@ManyToOne(cascade = {})
 	@JoinColumn(name ="city_id_fk")
 	private City cityDetails;
 
-	@OneToOne(cascade = {})
+	@ManyToOne(cascade = {})
 	@JoinColumn(name ="state_id_fk")
 	private State stateDetails;
 	
-	@OneToOne(cascade = {})
+	@ManyToOne(cascade = {})
 	@JoinColumn(name ="country_id_fk")
 	private Country countryDetails;
 	
-	@OneToOne(cascade = {})
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JoinColumn(name ="carecell_id_fk")
+    @JsonBackReference
+	private Carecell carecellDetails;
+	
+	@ManyToOne(cascade = {})
 	@JoinColumn(name ="member_type_id_fk")
 	private MemberType memberTypeDetails;
 	
 	@ManyToMany
 	private Set<Ministry> ministriesInterested = new HashSet<>();
 	
-	@OneToOne(mappedBy = "memberDetails")
-    private CarecellMember carecellgroup;
+	
 	
 	@Column(nullable = false)
 	private Integer pincode;
 	
-	@Column(nullable = false)
-	private Integer areaPastorId;
+	
 	
 	@Column(nullable = false)
 	private Integer oldChurchId;
@@ -79,7 +90,7 @@ public class Member {
 	@Column(nullable = false)
 	private Date dob;
 	
-	@OneToOne(cascade = {})
+	@ManyToOne(cascade = {})
 	@JoinColumn(name ="occupation_id_fk")
 	private Occupation occupationDetails;
 	
@@ -101,7 +112,7 @@ public class Member {
 	@Column
 	private Boolean isLetterAccepted;
 	
-	@OneToOne(cascade = {})
+	@ManyToOne(cascade = {})
 	@JoinColumn(name ="religion_id_fk")
 	private Religion religionDetails;
 
@@ -145,6 +156,14 @@ public class Member {
 		this.address = address;
 	}
 
+	public Area getAreaDetails() {
+		return areaDetails;
+	}
+
+	public void setAreaDetails(Area areaDetails) {
+		this.areaDetails = areaDetails;
+	}
+
 	public City getCityDetails() {
 		return cityDetails;
 	}
@@ -169,6 +188,14 @@ public class Member {
 		this.countryDetails = countryDetails;
 	}
 
+	public Carecell getCarecellDetails() {
+		return carecellDetails;
+	}
+
+	public void setCarecellDetails(Carecell carecellDetails) {
+		this.carecellDetails = carecellDetails;
+	}
+
 	public Integer getPincode() {
 		return pincode;
 	}
@@ -177,13 +204,7 @@ public class Member {
 		this.pincode = pincode;
 	}
 
-	public Integer getAreaPastorId() {
-		return areaPastorId;
-	}
-
-	public void setAreaPastorId(Integer areaPastorId) {
-		this.areaPastorId = areaPastorId;
-	}
+	
 
 	public Integer getOldChurchId() {
 		return oldChurchId;
@@ -287,14 +308,6 @@ public class Member {
 
 	public void setMinistriesInterested(Set<Ministry> ministriesInterested) {
 		this.ministriesInterested = ministriesInterested;
-	}
-
-	public CarecellMember getCarecellgroup() {
-		return carecellgroup;
-	}
-
-	public void setCarecellgroup(CarecellMember carecellgroup) {
-		this.carecellgroup = carecellgroup;
 	}
 
 	public Religion getReligionDetails() {
