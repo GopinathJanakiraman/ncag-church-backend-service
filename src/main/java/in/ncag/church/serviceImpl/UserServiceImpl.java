@@ -176,6 +176,7 @@ public class UserServiceImpl implements MemberService {
 		if(member.getCarecellId() > 0) {
 			Carecell care = new Carecell();
 			care.setId(member.getCarecellId());
+			care.setAreaDetails(a);
 			m.setCarecellDetails(care);
 		}
 		m.setCityDetails(city);
