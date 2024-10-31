@@ -24,6 +24,10 @@ public class Area {
 	@Column
 	private String name;
 	
+	
+	@Column(nullable = false)
+	private Integer pincode;
+	
 	@ManyToOne(cascade = {}, fetch = FetchType.LAZY)
 	@JoinColumn(name ="regionIdFk")
 	@JsonBackReference
@@ -51,6 +55,14 @@ public class Area {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public Integer getPincode() {
+		return pincode;
+	}
+
+	public void setPincode(Integer pincode) {
+		this.pincode = pincode;
 	}
 
 	

@@ -15,12 +15,19 @@ public class CarecellSpecification {
    	 return (root, query, criteriaBuilder) -> {
 
             List<Predicate> predicates = new ArrayList<>();
-            
+            if (memberDto.getAreaList() != null && !memberDto.getAreaList().isEmpty()) {
+                Predicate inClause = root.get("areaDetails").in(memberDto.getAreaList());
+                predicates.add(inClause);
+            }
             
          
-            if (memberDto.getAreaId() > 0) {
-                predicates.add(criteriaBuilder.equal(root.get("areaDetails"), memberDto.getAreaId()));
-            }
+			
+			/*
+			 * if (memberDto.getAreaId() > 0) {
+			 * predicates.add(criteriaBuilder.equal(root.get("areaDetails"),
+			 * memberDto.getAreaId())); }
+			 */
+			 
        
             return criteriaBuilder.and(predicates.toArray(new Predicate[0]));
    	 };

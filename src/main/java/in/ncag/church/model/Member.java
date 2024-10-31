@@ -21,7 +21,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
-@Table(name = "member")
+@Table(name = "membercopy")
 public class Member {
 
 	
@@ -72,8 +72,7 @@ public class Member {
 	
 	
 	
-	@Column(nullable = false)
-	private Integer pincode;
+	
 	
 	
 	
@@ -196,13 +195,7 @@ public class Member {
 		this.carecellDetails = carecellDetails;
 	}
 
-	public Integer getPincode() {
-		return pincode;
-	}
-
-	public void setPincode(Integer pincode) {
-		this.pincode = pincode;
-	}
+	
 
 	
 

@@ -1,6 +1,7 @@
 package in.ncag.church.dto;
 
 import java.util.Date;
+import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -38,6 +39,7 @@ public class MemberDTO {
 	private Date createAt;
 	private Boolean martialStatus;
 	private Integer oldChurchId;
+	private List<Integer> areaList;
 	public int getId() {
 		return id;
 	}
@@ -233,6 +235,12 @@ public class MemberDTO {
 	}
 	public void setCarecellId(int carecellId) {
 		this.carecellId = carecellId;
+	}
+	public List<Integer> getAreaList() {
+		return areaList;
+	}
+	public void setAreaList(List<Integer> areaList) {
+		this.areaList = areaList;
 	}
 	
 	
