@@ -278,10 +278,9 @@ public class PastorServiceImpl implements PastorService {
 		PastorDTO item = new PastorDTO();
 		item.setEmail(p.getEmail());
 		item.setMobileNo(p.getMobileNo());
-		if (p.getRegionDetail() != null) {
-			item.setRegionId(p.getRegionDetail().getId());
-			item.setRegionName(p.getRegionDetail().getName());
-		}
+		p.getAreaDetails().getRegionDetails().getName();
+		
+		
 		item.setId(p.getId());
 		item.setFirstname(p.getFirstName());
 		item.setAreaId(p.getAreaDetails().getId());

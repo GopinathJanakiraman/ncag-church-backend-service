@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
@@ -80,9 +81,7 @@ public class Pastor {
 	private String credential;
 	
 	
-	@JsonIgnore
-	@OneToOne(mappedBy = "pastorDetails", cascade = {CascadeType.DETACH,CascadeType.PERSIST,CascadeType.REFRESH,CascadeType.REMOVE}, fetch = FetchType.LAZY)
-	private Region regionDetail;
+	
 
 	public Integer getId() {
 		return id;
@@ -198,13 +197,7 @@ public class Pastor {
 		this.credential = credential;
 	}
 
-	public Region getRegionDetail() {
-		return regionDetail;
-	}
-
-	public void setRegionDetail(Region regionDetail) {
-		this.regionDetail = regionDetail;
-	}
+	
 
 	public Area getAreaDetails() {
 		return areaDetails;
