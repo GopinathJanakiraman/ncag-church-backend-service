@@ -9,6 +9,8 @@ public class AreaDTO {
 	private String regionName;
 	
 	private int regionId;
+	
+	private Integer pincode;
 
 	public Integer getId() {
 		return id;
@@ -41,6 +43,16 @@ public class AreaDTO {
 	public void setRegionId(int regionId) {
 		this.regionId = regionId;
 	}
+
+	public Integer getPincode() {
+		return pincode;
+	}
+
+	public void setPincode(Integer pincode) {
+		this.pincode = pincode;
+	}
+
+	
 	
 	
 }

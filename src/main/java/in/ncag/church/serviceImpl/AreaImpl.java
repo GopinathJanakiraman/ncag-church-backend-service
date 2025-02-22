@@ -34,6 +34,7 @@ public class AreaImpl implements AreaService{
 			item.setId(area.getId());
 			item.setName(area.getName());
 			item.setRegionName(area.getRegionDetails().getName());
+			item.setPincode(area.getPincode());
 			areaDTO.add(item);
 		});
 		areaoutput.setContent(areaDTO);
